@@ -14,25 +14,19 @@ Source: https://www.laopiniondemalaga.es/malaga/2015/05/06/cafe-medida-and-cafe-
 
 Descargamos:
 
-<code>
-$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+<code>$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar</code>
 
-$ php wp-cli.phar --info
-
-</code>
+<code>$ php wp-cli.phar --info</code>
 
 Hay más formas de instalación (Composer, Homebrew, Docker). Revisar la documentación para más info: https://wp-cli.org/
 
 Para ejecutarlo directamente de forma global con el comando <code>wp</code>:
 
-<code>
-$ chmod +x wp-cli.phar
+<code>$ chmod +x wp-cli.phar</code>
 
-$ sudo mv wp-cli.phar /usr/local/bin/wp
+<code>$ sudo mv wp-cli.phar /usr/local/bin/wp</code>
 
-$ wp --info
-
-</code>
+<code>$ wp --info</code>
 
 Actualizar WP-CLI cada vez que lo vayamos a usar:
 
@@ -48,139 +42,162 @@ Actualizar WP-CLI cada vez que lo vayamos a usar:
 
 ## Instalar WordPress
 
-Para ello usaremos los comandos:
- * wp config - https://developer.wordpress.org/cli/commands/config/
- * wp db - https://developer.wordpress.org/cli/commands/db/
- * wp core - https://developer.wordpress.org/cli/commands/core/
+<code>$ wp core download --locale=es_ES</code>
 
-<code>
-$ wp core download --locale=es_ES
+<code>$ wp config create --dbname=cafes --dbuser=fcjurado --dbpass=mysql</code>
 
-$ wp config create --dbname=cafes --dbuser=fcjurado --dbpass=mysql
+<code>$ wp db create</code>
 
-$ wp db create
+<code>$ wp core install --url=wp-cli.local --title="Café Sombra" --admin_user=admin --admin_password=admin --admin_email=info@fcjurado.com</code>
 
-$ wp core install --url=wp-cli.local --title="Café Sombra" --admin_user=admin 
---admin_password=admin --admin_email=info@fcjurado.com
+<code>$ wp config list</code>
 
-$ wp config list
-
-</code>
 
 > Whoops!! 
 
 ---
 
-## Cambiar URL del site
-<code>
-$ wp option update home 'http://wp-cli.local/wp-cli/sombra/'
+## Cambiar URL del site, nombre y descripción del blog
 
-$ wp option update siteurl 'http://wp-cli.local/wp-cli/sombra/'
-</code>
+<code>$ wp option update home 'http://wp-cli.local/wp-cli/sombra/'</code>
+
+<code>$ wp option update siteurl 'http://wp-cli.local/wp-cli/sombra/'</code>
+
+<code>$ wp option update blogname 'A cup of café con leche'</code>
+
+<code>$ wp option update blogdescription 'in Plaza Mayor'</code>
 
 ---
 
 ## Actualizar traducciones
-<code>
-$ wp language core update
 
-$ wp language plugin update --all
+<code>$ wp language core update</code>
 
-$ wp language theme update --all
-</code>
+<code>$ wp language plugin update --all</code>
+
+<code>$ wp language theme update --all</code>
 
 ---
 
 ## Buscar y reemplazar
-<code>
-$ wp search-replace "cafes.local" "cafes.com" wp_posts --dry-run --verbose
 
-$ wp search-replace "?utm_campaign=paid" "?utm_campaign=affiliate" wp_posts wp_postmeta --dry-run --verbose
+<code>$ wp search-replace "cafes.local" "cafes.com" wp_posts --dry-run --verbose</code>
 
-</code>
+<code>$ wp search-replace "ipsum" "latte" wp_posts wp_postmeta --dry-run --verbose</code>
+
+<code>$ wp search-replace "?utm_campaign=paid" "?utm_campaign=affiliate" wp_posts wp_postmeta --dry-run --verbose</code>
 
 ---
 
 ## Actualizar core
+
 Instalamos versión antigua de WP:
 
-<code>
-$ wp core download --locale=es_ES --version=4.6.1
+<code>$ wp core download --locale=es_ES --version=4.6.1</code>
 
-$ wp config create --dbname=hidromiel --dbuser=fcjurado --dbpass=mysql
+<code>$ wp config create --dbname=hidromiel --dbuser=fcjurado --dbpass=mysql</code>
 
-$ wp db create
+<code>$ wp db create</code>
 
-$ wp core install --url=http://wpcli.local/wp-cli/hidromiel/ --title="Hidromiel" --admin_user=admin --admin_password=admin --admin_email=info@fcjurado.com
+<code>$ wp core install --url=http://wpcli.local/wp-cli/hidromiel/ --title="Hidromiel" --admin_user=admin --admin_password=admin --admin_email=info@fcjurado.com</code>
 
-$ wp core check-update
+<code>$ wp core check-update</code>
 
-$ wp core update
-</code>
+<code>$ wp core update</code>
 
 ---
 
 ## Desactualizar core
-<code>
-$ wp core download --force --version=4.5
 
-$ wp core update --version=4.5 --force
-</code>
+<code>$ wp core download --force --version=4.5</code>
+
+<code>$ wp core update --version=4.5 --force</code>
 
 ---
 
 ## Instalar tema
+
+<code>$ wp theme install coffeeisle --activate </code>
+
 <code>$ wp theme install fury --activate</code>
 
 ---
 
+## Instalar plugin
+
+<code>$ wp plugin install coffee-cup-widget --activate</code>
+
+<code>$ wp plugin install coffee-cup-widget --activate</code>
+
+<code>$ wp plugin install contact-form-7 jetpack wordpress-seo user-registration google-sitemap-generator w3-total-cache vaultpress wp-smushit wp-optimize google-analytics-for-wordpress all-in-one-schemaorg-rich-snippets bj-lazy-load wordfence broken-link-checker social-icons cornify-for-wordpress hello-darth food-and-drink-menu tlp-food-menu tinycoffee --activate</code>
+
+---
+
+## Instalar plugin con widget y agregar widget
+
+<code>$ wp plugin install coffee-cup-widget</code>
+
+<code>$ wp sidebar list</code>
+
+<code>$ wp option list | grep widget_ </code>
+
+<code>$ wp widget add coffeecup fury-sidebar 1 --title="Select Coffee"</code>
+
+---
+
 ## Actualizar plugins
+
 Instalamos versión antigua de Plugin:
 
-<code>
-$ wp plugin install booking --version=8.0.1
+<code>$ wp plugin install booking --version=8.0.1</code>
 
-$ wp plugin status
+<code>$ wp plugin status</code>
 
-$ wp plugin update-all
-
-</code>
+<code>$ wp plugin update-all</code>
 
 ---
 
 ## Actualizar temas
 Instalamos versión antigua de Tema:
 
-<code>
-$ wp theme install hestia --version=2.2.0
+<code>$ wp theme install hestia --version=2.2.0</code>
 
-$ wp theme status
+<code>$ wp theme status</code>
 
-$ wp theme update-all
-</code>
+<code>$ wp theme update-all</code>
 
 ---
 
-## Crear usuarios desde CSV
+## Crear contenido random
 
-<code>$ wp user import-csv </code>
+<code>$ wp term generate category --count=100</code>
+
+<code>$ wp term generate post_tag --count=100</code>
+
+<code>$ wp post generate --count=1000</code>
+
+<code>$ wp post generate --count=100 --post_type=page</code>
+
+<code>$ wp user generate --count=100</code>
+
+<code>$ wp post generate --format=ids --count=100 | xargs -0 -d ' ' -I % wp comment generate --count=10 --post_id=%</code>
+
+<code>$ curl "https://baconipsum.com/api/?type=meat-and-filler&paras=10&format=html" | wp post generate --count=5 --post_content --format=ids | xargs -0 -d ' ' -I % wp comment generate --count=10 --post_id=%</code>
+
+---
+
+## Importar usuarios desde CSV
+
+$ wp user import-csv
 
 ---
 
 
 ## Limpiar la caché
 
----
+<code>$ wp transient delete --expired</code>
 
-## Realizar copia de seguridad
-
-<code>
-$ wp db export backup.sql
-$ wp db import backup.sql
-
----
-
-## Restaurar copia de seguridad
+<code>$ wp cache flush</code>
 
 ---
 
@@ -192,14 +209,39 @@ $ wp db import backup.sql
 
 ---
 
-## Crear contenido random
-<code>$ wp post generate --count=10</code>
-<code>$ wp post generate --count=10 --post_type=page</code>
-<code>$ curl "https://baconipsum.com/api/?type=meat-and-filler&paras=10&format=html" | wp post generate --count=50 --post_content</code>
+## Realizar copia de seguridad BD
+
+<code>$ wp db export ~/cafes.sql</code>
 
 ---
 
-## Test de velocidad
+## Restaurar copia de seguridad BD
+
+<code>$ wp db import ~/cafes.sql</code>
+
+---
+
+## Crear staging site 
+
+Recomendado al hacer acciones automáticas de actualizaciones
+
+<code>$ mkdir staging </code>
+
+<code>$ cd staging</code>
+
+<code>$ cp -R ../sombra/* ./ </code>
+
+<code>$ wp config set DB_NAME staging</code>
+
+<code>$ wp db create</code>
+
+<code>$ wp db import ~/cafes.sql</code>
+
+<code>$ wp search-replace 'http://wpcli.local/wp-cli/cafes/' 'http://wpcli.local/wp-cli/staging/' </code>
+
+<code>$ wp option update home 'http://wp-cli.local/wp-cli/staging/'</code>
+
+<code>$ wp option update siteurl 'http://wp-cli.local/wp-cli/staging/'</code>
 
 ---
 
@@ -208,6 +250,20 @@ $ wp db import backup.sql
 <code>$ wp db optimize</code>
 
 <code>$ wp db repair</code>
+
+<code>$ wp db size</code>
+
+---
+
+## BSOD - Panic mode ON
+
+<code>$ wp plugin deactivate --all</code>
+
+<code>$ wp theme activate twentynineteen </code>
+
+<code>$ wp core update -–version=4.6.1 –-force </code>
+
+<code>$ wp plugin activate <plugins></code>
 
 ---
 
@@ -218,13 +274,27 @@ $ wp db import backup.sql
 
 ---
 
+## Subir imágenes desde local
+
+<code>$ wp media import ../images/*.jpg </code>
+
+<code>wp media import ../images/DSC_4321.png --post_id=1 \
+--title="A little cat" --featured_image</code>
+
+---
+
 ## Regenerar thumnails
 
-<code>$ wp media regenerate </code>
+Cambiamos el tema para necesitar regenerar
+
+<code>$ wp theme install coffeecafe --activate </code>
+
+<code>$ wp media regenerate --yes </code>
 
 ---
 
 ## Extensiones
+
 <code>$ wp package list </code>
 
 <code>$ wp package install _package_ </code>
@@ -248,8 +318,4 @@ $ wp package install markri/wp-sec
 $ wp wp-sec check
 </code>
 
----
-
-
-## WooCommerce
 ---
