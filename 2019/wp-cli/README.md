@@ -48,7 +48,7 @@ Actualizar WP-CLI cada vez que lo vayamos a usar:
 
 <code>$ wp db create</code>
 
-<code>$ wp core install --url=wp-cli.local --title="Café Sombra" --admin_user=admin --admin_password=admin --admin_email=info@fcjurado.com</code>
+<code>$ wp core install --url=wp-cli.local --title="Café Sombra" --admin_user=admin --admin_password=admin --admin_email=wpcli@fcjurado.com</code>
 
 <code>$ wp config list</code>
 
@@ -66,6 +66,14 @@ Actualizar WP-CLI cada vez que lo vayamos a usar:
 <code>$ wp option update blogname 'A cup of café con leche'</code>
 
 <code>$ wp option update blogdescription 'in Plaza Mayor'</code>
+
+---
+
+## Cambiar idioma
+
+<code>$ wp language core install fi</code>
+
+<code>$ wp site switch-language fi</code>
 
 ---
 
@@ -99,11 +107,13 @@ Instalamos versión antigua de WP:
 
 <code>$ wp db create</code>
 
-<code>$ wp core install --url=http://wpcli.local/wp-cli/hidromiel/ --title="Hidromiel" --admin_user=admin --admin_password=admin --admin_email=info@fcjurado.com</code>
+<code>$ wp core install --url=http://wpcli.local/wp-cli/hidromiel/ --title="Hidromiel" --admin_user=admin --admin_password=admin --admin_email=wpcli@fcjurado.com</code>
 
 <code>$ wp core check-update</code>
 
 <code>$ wp core update</code>
+
+<code>$ wp core update-db</code>
 
 ---
 
@@ -112,6 +122,8 @@ Instalamos versión antigua de WP:
 <code>$ wp core download --force --version=4.5</code>
 
 <code>$ wp core update --version=4.5 --force</code>
+
+<code>$ wp core update-db</code>
 
 ---
 
@@ -178,7 +190,9 @@ Instalamos versión antigua de Tema:
 
 <code>$ wp post generate --count=100 --post_type=page</code>
 
-<code>$ wp user generate --count=100</code>
+<code>$ wp user generate --count=5 --role=editor</code>
+
+<code>$ wp user generate --count=10 --role=author</code>
 
 <code>$ wp post generate --format=ids --count=100 | xargs -0 -d ' ' -I % wp comment generate --count=10 --post_id=%</code>
 
@@ -188,7 +202,15 @@ Instalamos versión antigua de Tema:
 
 ## Importar usuarios desde CSV
 
-$ wp user import-csv
+<code>$ wp user import-csv ~/users.csv</code>
+
+Sample users.csv file:
+
+user_login,user_email,display_name,role    
+bobjones,bobjones@example.com,Bob Jones,contributor    
+newuser1,newuser1@example.com,New User,author    
+existinguser,existinguser@example.com,Existing User,administrator    
+...
 
 ---
 
@@ -203,9 +225,25 @@ $ wp user import-csv
 
 ## Exportar contenido
 
+<code>$ wp plugin install wordpress-importer --activate </code>
+
+<code>$ wp export </code>
+
+---
+
+## Vaciar base de datos
+
+<code>$ wp db reset --yes </code>
+
+<code>$ wp core install --url=http://wpcli.local/wp-cli/hidromiel/ --title="Hidromiel" --admin_user=admin --admin_password=admin --admin_email=wpcli@fcjurado.com </code>
+
 ---
 
 ## Importar contenido
+
+<code>$ wp plugin install wordpress-importer --activate</code>
+
+<code>$ wp import sombra.wordpress.2019-03-20.000.xml --authors=create</code>
 
 ---
 
@@ -262,6 +300,8 @@ Recomendado al hacer acciones automáticas de actualizaciones
 <code>$ wp theme activate twentynineteen </code>
 
 <code>$ wp core update -–version=4.6.1 –-force </code>
+
+<code>$ wp core update-db </code>
 
 <code>$ wp plugin activate <plugins></code>
 
