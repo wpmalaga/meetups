@@ -413,6 +413,19 @@ $ wp package install markri/wp-sec
 $ wp wp-sec check
 ```
 
+### WP PROFILE
+
+Timing
+
+```
+$ wp package install wp-cli/profile-command
+
+$ wp profile stage --all --spotlight --allow-root
+```
+
+## Tiempo carga plugins
+
+[Medir tiempo plugins](performance.sh)
 
 ## Varios servidores - Alias
 
