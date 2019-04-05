@@ -95,7 +95,8 @@ $ wp language theme update --all
 
 ## Buscar y reemplazar
 
-```$ wp search-replace "cafes.local" "cafes.com" wp_posts --dry-run --verbose
+```
+$ wp search-replace "cafes.local" "cafes.com" wp_posts --dry-run --verbose
 
 $ wp search-replace "ipsum" "latte" wp_posts wp_postmeta --dry-run --verbose
 
@@ -216,6 +217,8 @@ $ wp user generate --count=10 --role=author
 
 $ wp post generate --format=ids --count=100 | xargs -0 -d ' ' -I % wp comment generate --count=10 --post_id=%
 
+OSC
+
 $ curl "https://baconipsum.com/api/?type=meat-and-filler&paras=10&format=html" | wp post generate --count=5 --post_content --format=ids | xargs -0 -d ' ' -I % wp comment generate --count=10 --post_id=%
 ```
 
@@ -234,7 +237,7 @@ $ wp post delete $(wp post list --post_type='page' --format=ids)
 ```$ wp comment delete $(wp comment list --status=spam --format=ids)```
 
 
-## Importar usuarios desde CSV
+## Importar usuarios desde CSV (OSC)
 
 ```$ wp user import-csv ~/users.csv```
 
@@ -362,7 +365,7 @@ $ wp config set WP_DEBUG false
 
 
 
-## Subir imágenes desde local
+## Subir imágenes desde local (OSC)
 
 ```
 $ wp media import ../images/*.jpg 
@@ -373,7 +376,7 @@ wp media import ../images/DSC_4321.png --post_id=1 \
 
 
 
-## Regenerar thumnails
+## Regenerar thumnails (OSC)
 
 Cambiamos el tema para necesitar regenerar
 
@@ -460,6 +463,8 @@ $ wp profile stage --all --spotlight --allow-root
   - @corto
   - @sombra
   - @nube
-
+```
 
 [Update](update.sh)
+
+@TODO: Plugins Premium

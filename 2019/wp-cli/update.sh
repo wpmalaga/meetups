@@ -2,9 +2,11 @@
 #
 #
 
-
 echo "Core check-update"
 wp @cafes core check-update 
+
+echo "Hago Backup"
+wp @cafes db export
 
 echo "Actualizo Core"
 wp @cafes core download
@@ -33,9 +35,6 @@ wp @cafes cache flush
 wp @cafes db optimize
 wp @cafes db repair
 wp @cafes db size
-
-echo "Hago Backup"
-wp @cafes db export
 
 echo "Informe seguridad"
 wp @cafes wp-sec check 
